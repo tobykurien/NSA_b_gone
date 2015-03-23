@@ -8,9 +8,13 @@ This script does the following:
 
 - Implements a MAC address randomizer. A random MAC address is assigned to the configured network device.
 - Implements a hostname randomizer. A random hostname is created for your machine, e.g. ```mqiCbaDyhelw```.
-- Implements a very strict firewall which, by default, allows *no* internet traffic. Current connections will get dropped (eventually). To gain internet access, you need to run the application under the "internet" group (see [Usage][#usage]).
+- Implements a very strict firewall which, by default, allows *no* internet traffic. Current connections will get dropped (eventually). To gain internet access, you need to run the application under the "internet" group (see [Usage](#usage)).
 
-The idea is that no rogue apps/services on your system can spy on you and send data to the internet. This is because you will very finely control which application can access the internet, by running them from a specific terminal (or with a specific command). In addition, each time you run the script, your machine will look like a new machine on the internet (due to the random MAC address and hostname).
+The idea is that no rogue apps/services on your system can spy on you and send data to the internet. This is because you will very finely control which application can access the internet, by running them from a specific terminal (or with a specific command). In addition, each time you run the script, your machine will look like a new machine on the internet (due to the random MAC address and hostname). This hopefully means that keyloggers/camera spy apps/botnet apps won't be able to send their collected data upstream, or receive commands remotely.
+
+Another upshot is that you get much better control of your bandwidth usage (esp. useful when tethering over a mobile data connection).
+
+This tool can be extremely frustrating to use at first, since you automatically expect all apps to have internet access. This will catch you out a lot, but have some patience, and set up your launcher short-cuts to allow your most commonly used apps to have internet access.
 
 # Installation
 
