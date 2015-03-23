@@ -1,6 +1,9 @@
 #!/bin/bash
 # Firewall apps - only allow apps run from "internet" group to run
 
+#Your External Interface
+LAN=eth0
+
 # Clear all chains
 echo "Setting up firewall..."
 iptables -F
