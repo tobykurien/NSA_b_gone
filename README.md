@@ -1,6 +1,6 @@
 # NSA_b_gone
 
-An Ubuntu script to improve your privacy online.
+An Bash script to improve your privacy online.
 
 # What it does
 
