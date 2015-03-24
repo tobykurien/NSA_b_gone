@@ -1,6 +1,6 @@
 # NSA_b_gone
 
-An Bash script to improve your privacy online.
+A Linux shell script to improve your privacy online.
 
 # What it does
 
@@ -8,7 +8,7 @@ This script does the following:
 
 - Implements a MAC address randomizer. A random MAC address is assigned to the configured network device.
 - Implements a hostname randomizer. A random hostname is created for your machine, e.g. ```mqiCbaDyhelw```.
-- Implements a very strict firewall which, by default, allows *no* internet traffic. Current connections will get dropped (eventually). To gain internet access, you need to run the application under the "internet" group (see [Usage](#usage)).
+- Implements a very strict firewall which, by default, allows *no* internet traffic. To gain internet access, you need to run the application under the "internet" group (see [Usage](#usage)).
 
 # Why?
 
