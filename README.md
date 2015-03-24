@@ -19,7 +19,6 @@ Another upshot is that you get much better control of your bandwidth usage (esp.
 # Installation
 
 - Download the script
-- Run this command: ```sudo groupadd internet```. This will create the necessary *internet* group. Do not add any user to this group!
 - Optional: Edit the script and change the ```LAN=wlan0``` line to use whichever device you connect with.
 - Optional: add the script to ```/etc/rc.local``` to have it run automatically on boot, or better yet, to ```/etc/network/if-pre-up.d/``` (but remove the ```.sh``` suffix and comment out the network stop/start commands) to have it apply everytime you connect to a network.
 
