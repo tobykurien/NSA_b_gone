@@ -1,8 +1,8 @@
 #!/bin/bash
 # Firewall apps - only allow apps run from "internet" group to run
 
-#Your External Interface
-LAN=eth0
+#Your External Interface, e.g. eth0, wlan0
+LAN=wlan0
 
 # Clear all chains
 echo "Setting up firewall..."
@@ -12,12 +12,14 @@ iptables -t nat -F
 iptables -t nat -X
 iptables -t mangle -F
 iptables -t mangle -X
+
+# set the default policy
 iptables -P INPUT DROP
-iptables -P OUTPUT DROP
-iptables -P FORWARD DROP
+iptables -P FORWARD ACCEPT
+iptables -P OUTPUT ACCEPT
 
 #create internet group - this only needs to happen once
-# groupadd internet
+groupadd internet 2>/dev/null
 
 # accept WLAN traffic based on established connections
 iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
@@ -28,6 +30,10 @@ iptables -A OUTPUT -p tcp -m owner --gid-owner internet -j ACCEPT
 # allow localhost
 iptables -I INPUT -i lo -j ACCEPT
 iptables -I OUTPUT -p tcp -d 127.0.0.1 -j ACCEPT
+
+# drop packets for other users
+iptables -A OUTPUT -p tcp -d 192.168.0.1/24 -j ACCEPT
+iptables -A OUTPUT -p tcp -j REJECT
 
 # Stop networking service, so that we can re-configure the MAC address
 echo "Setting up the new MAC address..."
