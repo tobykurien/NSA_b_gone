@@ -34,7 +34,7 @@ Another upshot is that you get much better control of your bandwidth usage (esp.
 - ```apt-get``` does not work, even when run under the internet group. Use the ```stop_firewall.sh``` script to temporarily disable the firewall. Don't forget to re-enable it when you're done.
 - Your ```/etc/hosts``` file will, over time, need cleaning up from all the random hostnames inserted at the end. Simply delete all but the last hostname for the ```127.0.0.1``` address.
 - The first byte of the random MAC address is not changed, since it needs to be even. Feel free to change this in the script.
-- The ```ping``` command (ICMP) still works without the internet group.
+- The ```ping``` command (ICMP, DNS) still works without the internet group.
 
 # Warnings
 
