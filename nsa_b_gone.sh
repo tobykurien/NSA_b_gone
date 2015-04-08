@@ -18,6 +18,10 @@ iptables -P INPUT DROP
 iptables -P FORWARD ACCEPT
 iptables -P OUTPUT ACCEPT
 
+ip6tables -P INPUT DROP
+ip6tables -P FORWARD DROP
+ip6tables -P OUTPUT DROP
+
 #create internet group - this only needs to happen once
 groupadd internet 2>/dev/null
 
