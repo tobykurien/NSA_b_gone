@@ -12,9 +12,14 @@ This script does the following:
 
 # Why?
 
-The idea behind this script is that no rogue apps/services on your system can spy on you and send data to the internet. This is because you will very finely control which application can access the internet, by running them from a specific terminal (or with a specific command, see [Usage](#usage)). This hopefully means that keyloggers/camera spy apps/botnet apps/etc. won't be able to send their collected data upstream, or receive commands remotely. In addition, each time you run the script, your machine will look like a different machine on the internet (due to the random MAC address and hostname). 
+The idea behind this script is that no rogue apps/services on your system can spy on you and send data to the internet. This is because you will very finely control which application can access the internet, by running them from a specific terminal (or with a specific command, see [Usage](#usage)). This hopefully means that keyloggers/camera spy apps/botnet apps/etc. won't be able to send their collected data upstream, or receive commands remotely. 
 
-Another upshot is that you get much better control of your bandwidth usage (esp. useful when tethering over a mobile data connection).
+In addition, each time you run the script, your machine will look like a different machine on the network (due to the random MAC address and hostname). This prevents tracking you from your machine's unique MAC address or it's machine name. 
+
+Some unintended upshots:
+
+- you can gain infinite usage free WiFi by running this script each time your free WiFi allocation is used up
+- you get *much* better control of your bandwidth usage (esp. useful when tethering over a mobile data connection). App updates, etc. won't automatically run in the background.
 
 # Installation
 
@@ -24,17 +29,17 @@ Another upshot is that you get much better control of your bandwidth usage (esp.
 
 # Usage
 
-- At startup, or each time you get online, run ```sudo ./nsa_b_gone.sh```. This will drop your network, erect the firewall, randomize your MAC address and hostname, and then re-enable networking.
+- At startup, or *each time you get online*, run ```sudo ./nsa_b_gone.sh```. This will drop your network, erect the firewall, randomize your MAC address and hostname, and then re-enable networking.
 - To run, for example, firefox with internet access, use the command: ```sudo -g internet firefox```. Note that this does **not** run Firefox as root, it still runs as your logged-in user.
-- You can open a terminal with internet access by running: ```sudo -g internet -s```. Note that this does **not** open a root shell, but rather a shell with your user and the added internet group.
-- To stop the madness, simply run ```sudo ./stop_firewall.sh``` to get full internet back.
+- You can open a terminal with internet access by running: ```sudo -g internet -s```. Note that this does **not** open a root shell, but rather a shell with your user and the added internet group. Now, any app started from this terminal will have internet access. Any app spawned by an app started from this terminal will also have internet access.
+- To stop the madness, simply run ```sudo ./stop_firewall.sh``` to get full internet back. It might look like I missed a trick by not calling it ```nsa_b_back.sh```, but that would've made tab-completion harder.
 
 # Known Issues
 
 - ```apt-get``` does not work, even when run under the internet group. Use the ```stop_firewall.sh``` script to temporarily disable the firewall. Don't forget to re-enable it when you're done.
 - Your ```/etc/hosts``` file will, over time, need cleaning up from all the random hostnames inserted at the end. Simply delete all but the last hostname for the ```127.0.0.1``` address.
 - The first byte of the random MAC address is not changed, since it needs to be even. Feel free to change this in the script.
-- The ```ping``` command (ICMP, DNS) still works without the internet group.
+- The ```ping``` command (ICMP, DNS) still works without the internet group. This means that DNS-tunneling is not prevented.
 
 # Warnings
 
