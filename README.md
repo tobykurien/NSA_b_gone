@@ -1,4 +1,4 @@
-# NSA_b_gone
+# NSA-B-Gone
 
 A Linux shell script to improve your privacy online.
 
